@@ -1,0 +1,19 @@
+{
+  "name": "monogodb-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^5.2.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.3.8",
+    "npm": "^6.4.1",
+    "to": "^0.2.9",
+    "update": "^0.7.4"
+  }
+}
