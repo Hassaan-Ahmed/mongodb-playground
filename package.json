@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nodemon --exec mocha -R min"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "mocha": "^5.2.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.3.8",
+    "nodemon": "^1.18.5",
     "npm": "^6.4.1",
     "to": "^0.2.9",
     "update": "^0.7.4"
