@@ -4,7 +4,7 @@ const assert = require('assert');
 describe('Updating user records ', () => {
     let joe;
    beforeEach((done) => {
-       joe = new User({name: 'joe'});
+       joe = new User({name: 'joe', postCount: 0});
        joe.save()
            .then(() => done());
    });
@@ -25,7 +25,7 @@ describe('Updating user records ', () => {
     });
 
     it('should update a model instance', (done) => {
-        assertName(joe.update({name: 'Alex'}), done);
+        assertName(joe.updateOne({name: 'Alex'}), done);
     });
 
     it('should update a model class', (done) => {
@@ -42,5 +42,16 @@ describe('Updating user records ', () => {
     it('should find a record with an id and update a model class', (done) => {
         assertName(User.findByIdAndUpdate(joe._id, {name: 'Alex'})
             , done);
+    });
+
+    it('should find the user and update the postCount number using mongo operators', (done) => {
+        User.updateOne({name: 'joe'}, {$inc: {postCount: 1}})
+            .then(() => {
+                User.findOne({name: 'joe'})
+                    .then((user) => {
+                        assert(user.postCount === 1);
+                        done();
+                    })
+            });
     });
 });
