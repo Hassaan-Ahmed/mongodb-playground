@@ -32,14 +32,15 @@ describe('Subdocument', () => {
                     });
     });
 
-    it('should remove the sub document', (done) => {
-        const joe = new User({name: 'joe', posts: [{title: 'new post'}]});
+    xit('should remove the sub document', (done) => {
+        const joe = new User({
+            name: 'joe',
+            posts: [{title: 'new post'}]
+        });
         joe.save()
             .then(() => User.findOne({name: 'joe'}))
             .then((user) => {
-                console.log(user.posts[0]);
-                user.posts[0].remove().exec();
-                console.log('gets here');
+                user.posts[0].remove();
                 return user.save();
             })
             .then(() => User.findOne({name: 'joe'}))
@@ -49,4 +50,5 @@ describe('Subdocument', () => {
                 done();
             });
     });
+
 });
