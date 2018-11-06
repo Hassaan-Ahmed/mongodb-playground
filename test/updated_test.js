@@ -4,7 +4,7 @@ const assert = require('assert');
 describe('Updating user records ', () => {
     let joe;
    beforeEach((done) => {
-       joe = new User({name: 'joe', postCount: 0});
+       joe = new User({name: 'joe', likes: 0});
        joe.save()
            .then(() => done());
    });
@@ -44,12 +44,12 @@ describe('Updating user records ', () => {
             , done);
     });
 
-    it('should find the user and update the postCount number using mongo operators', (done) => {
-        User.updateOne({name: 'joe'}, {$inc: {postCount: 1}})
+    it('should find the user and update the likes number using mongo operators', (done) => {
+        User.updateOne({name: 'joe'}, {$inc: {likes: 1}})
             .then(() => {
                 User.findOne({name: 'joe'})
                     .then((user) => {
-                        assert(user.postCount === 1);
+                        assert(user.likes === 1);
                         done();
                     })
             });
