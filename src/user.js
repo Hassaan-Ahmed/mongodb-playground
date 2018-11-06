@@ -22,5 +22,12 @@ UserSchema.virtual('postCount').get(function () {
    return this.posts.length;
 });
 
+// next is used to identify if the function is finished
+UserSchema.pre('remove', function (next) {
+   const BlogPost = mongoose.model('blogPost');
+   BlogPost.remove({_id: {$in: this.blogPosts}})
+   .then(() => next());
+});
+
 const User = mongoose.model('user', UserSchema);
 module.exports = User;
