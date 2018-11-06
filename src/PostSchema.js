@@ -4,4 +4,4 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
    title: String
 });
-module.export = PostSchema;
+module.exports = PostSchema;
